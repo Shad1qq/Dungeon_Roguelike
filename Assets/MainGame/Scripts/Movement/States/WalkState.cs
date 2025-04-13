@@ -6,7 +6,7 @@ namespace Assets.MainGame.Scripts.Movement.States
     public class WalkState : MovementBase
     {
         public WalkState(FSM fsm, float speed, InputSystem inputSystem, Rigidbody rb, float jumpForce) 
-            : base(fsm, speed, inputSystem, rb)
+            : base(fsm, speed, inputSystem, rb, jumpForce)
         {
             
         }
@@ -22,7 +22,11 @@ namespace Assets.MainGame.Scripts.Movement.States
             {
                 _fsm.SetState<IdleState>();
             }
-            
+            if (_inputSystem.Player.Sprint.IsPressed())
+            {
+                _fsm.SetState<RunState>();
+            }
+
         }
          
         public override void Exit() 

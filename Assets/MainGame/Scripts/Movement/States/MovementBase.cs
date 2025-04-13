@@ -19,15 +19,16 @@ namespace Assets.MainGame.Scripts.Movement.States
             _rb = rb;
         }
         public MovementBase(FSM fsm, InputSystem inputSystem, Rigidbody rb) : base(fsm)
-        {
+        {   
             _inputSystem = inputSystem;
             _rb = rb;
         }
-        public MovementBase(FSM fsm, InputSystem inputSystem, Rigidbody rb, float jumpForce) : base(fsm)
+        public MovementBase(FSM fsm, float speed, InputSystem inputSystem, Rigidbody rb, float jumpForce) : base(fsm)
         {
             _inputSystem = inputSystem;
             _rb = rb;
             _jumpForce = jumpForce;
+            _speed = speed;
         }
 
         #endregion
@@ -40,6 +41,14 @@ namespace Assets.MainGame.Scripts.Movement.States
         {
             _rb.AddForce(Vector3.up*_jumpForce, ForceMode.Impulse);
             _fsm.SetState<AirState>();
+        }
+        protected void Crouch()
+        {
+            _rb.transform.localScale = new Vector3(_rb.transform.localScale.x, 0.5f, _rb.transform.localScale.z);
+        }
+        protected void StandUp()
+        {
+            _rb.transform.localScale = new Vector3(_rb.transform.localScale.x, 1f, _rb.transform.localScale.z);
         }
 
     }

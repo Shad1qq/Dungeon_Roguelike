@@ -13,6 +13,8 @@ namespace Assets.MainGame.Scripts.Movement
         [SerializeField]private Rigidbody _rb;
 
         [SerializeField] private float _speed = 4f;
+        [SerializeField] private float _crouchSpeed = 2f;
+        [SerializeField] private float _sprintSpeed = 7f;
         [SerializeField] private float _maxRayDistance = 4f;
         [SerializeField] private float _jumpForce = 4f;
 
@@ -31,7 +33,9 @@ namespace Assets.MainGame.Scripts.Movement
         {   
             _fsm.AddState(new IdleState(_fsm, _inputSystem, _rb));
             _fsm.AddState(new WalkState(_fsm, _speed, _inputSystem, _rb, _jumpForce));
-            _fsm.AddState(new AirState(_fsm, _inputSystem, _rb, transform, _maxRayDistance));
+            _fsm.AddState(new AirState(_fsm,_speed, _inputSystem, _rb, transform, _maxRayDistance));
+            _fsm.AddState(new CrouchState(_fsm, _crouchSpeed, _inputSystem, _rb));
+            _fsm.AddState(new RunState(_fsm, _sprintSpeed, _inputSystem, _rb));
 
             _fsm.SetState<IdleState>();   
         }

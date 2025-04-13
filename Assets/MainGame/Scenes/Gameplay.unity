@@ -684,8 +684,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 1857426511}
   _speed: 4
-  _maxRayDistance: 4
-  _jumpForce: 194.46
+  _maxRayDistance: 1
+  _jumpForce: 3
 --- !u!54 &1857426511
 Rigidbody:
   m_ObjectHideFlags: 0

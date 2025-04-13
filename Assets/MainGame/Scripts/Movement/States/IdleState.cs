@@ -21,6 +21,10 @@ namespace Assets.MainGame.Scripts.Movement.States
             {
                 _fsm.SetState<WalkState>();
             }
+            if (_inputSystem.Player.Crouch.IsPressed())
+            {
+                _fsm.SetState<CrouchState>();
+            }
         }
         public override void Exit()
         {

@@ -6,7 +6,7 @@ public class AirState : MovementBase
 {
     private Transform _transform;
     private float _maxDistance;
-    public AirState(FSM fsm, InputSystem inputSystem, Rigidbody rb, Transform transform, float maxDistance) : base(fsm, inputSystem, rb)
+    public AirState(FSM fsm, float speed,  InputSystem inputSystem, Rigidbody rb, Transform transform, float maxDistance) : base(fsm, speed, inputSystem, rb)
     {
         _transform = transform;
         _maxDistance = maxDistance;
@@ -17,6 +17,7 @@ public class AirState : MovementBase
     }
     public override void Update()
     {
+        Move();
         bool hit = Physics.Raycast(_transform.position, Vector3.down, _maxDistance, 1<<6);
         if(hit)
         {
