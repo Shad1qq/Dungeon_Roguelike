@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RunState : MovementBase
 {
-    public RunState(FSM fsm, float runspeed, InputSystem inputSystem, Rigidbody rb) : base(fsm, runspeed, inputSystem, rb)
+    public RunState(FSM fsm, float runspeed, InputSystem inputSystem, Rigidbody rb, float jumpForce, Transform transform) : base(fsm, runspeed, inputSystem, rb, jumpForce, transform)
     {
     }
     public override void Update()

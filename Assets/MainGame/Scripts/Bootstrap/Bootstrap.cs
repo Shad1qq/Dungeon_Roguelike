@@ -24,7 +24,7 @@ namespace Assets.MainGame.Scripts.Bootstrap
             
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _inputActions.Disable();
         }

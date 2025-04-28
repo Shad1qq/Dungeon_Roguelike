@@ -32,10 +32,10 @@ namespace Assets.MainGame.Scripts.Movement
         private void Start()
         {   
             _fsm.AddState(new IdleState(_fsm, _inputSystem, _rb));
-            _fsm.AddState(new WalkState(_fsm, _speed, _inputSystem, _rb, _jumpForce));
+            _fsm.AddState(new WalkState(_fsm, _speed, _inputSystem, _rb, _jumpForce, transform));
             _fsm.AddState(new AirState(_fsm,_speed, _inputSystem, _rb, transform, _maxRayDistance));
             _fsm.AddState(new CrouchState(_fsm, _crouchSpeed, _inputSystem, _rb));
-            _fsm.AddState(new RunState(_fsm, _sprintSpeed, _inputSystem, _rb));
+            _fsm.AddState(new RunState(_fsm, _sprintSpeed, _inputSystem, _rb, _jumpForce, transform));
 
             _fsm.SetState<IdleState>();   
         }

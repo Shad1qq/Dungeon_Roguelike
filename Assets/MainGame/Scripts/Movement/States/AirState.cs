@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AirState : MovementBase
 {
-    private Transform _transform;
     private float _maxDistance;
     public AirState(FSM fsm, float speed,  InputSystem inputSystem, Rigidbody rb, Transform transform, float maxDistance) : base(fsm, speed, inputSystem, rb)
     {

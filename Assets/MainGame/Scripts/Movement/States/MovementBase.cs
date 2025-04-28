@@ -10,6 +10,7 @@ namespace Assets.MainGame.Scripts.Movement.States
         protected float _speed;
         protected InputSystem _inputSystem;
         protected float _jumpForce;
+        protected Transform _transform;
 
         #region Constructors
         public MovementBase(FSM fsm, float speed, InputSystem inputSystem, Rigidbody rb) : base(fsm)
@@ -23,19 +24,21 @@ namespace Assets.MainGame.Scripts.Movement.States
             _inputSystem = inputSystem;
             _rb = rb;
         }
-        public MovementBase(FSM fsm, float speed, InputSystem inputSystem, Rigidbody rb, float jumpForce) : base(fsm)
+        public MovementBase(FSM fsm, float speed, InputSystem inputSystem, Rigidbody rb, float jumpForce, Transform transform) : base(fsm)
         {
             _inputSystem = inputSystem;
             _rb = rb;
             _jumpForce = jumpForce;
             _speed = speed;
+            _transform = transform;
         }
 
         #endregion
         protected void Move()
         {
             Vector3 direction = _inputSystem.Player.Move.ReadValue<Vector3>();
-            _rb.linearVelocity = new Vector3(direction.x * _speed, _rb.linearVelocity.y, direction.z * _speed);
+            Vector3 worldPos = _transform.TransformDirection(direction) * _speed;
+            _rb.linearVelocity = new Vector3(worldPos.x, _rb.linearVelocity.y, worldPos.z);
         }
         protected void Jump(InputAction.CallbackContext obj)
         {

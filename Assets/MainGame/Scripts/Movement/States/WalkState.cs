@@ -5,8 +5,8 @@ namespace Assets.MainGame.Scripts.Movement.States
 {
     public class WalkState : MovementBase
     {
-        public WalkState(FSM fsm, float speed, InputSystem inputSystem, Rigidbody rb, float jumpForce) 
-            : base(fsm, speed, inputSystem, rb, jumpForce)
+        public WalkState(FSM fsm, float speed, InputSystem inputSystem, Rigidbody rb, float jumpForce, Transform transform) 
+            : base(fsm, speed, inputSystem, rb, jumpForce, transform)
         {
             
         }
